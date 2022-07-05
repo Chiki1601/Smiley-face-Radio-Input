@@ -1,0 +1,90 @@
+:root {
+  --pink: #ff0087;
+  --green: #01ff55;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #222;
+  overflow: hidden;
+}
+
+label {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+label input {
+  appearance: none;
+}
+
+label .face {
+  position: absolute;
+  inset: 0;
+  background: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  mix-blend-mode: lighten;
+  transition: 0.5s;
+}
+
+label input:checked ~ .face {
+  background: var(--pink);
+  z-index: 1000;
+  filter: drop-shadow(0 0 50px var(--pink)) drop-shadow(0 0 100px var(--pink));
+}
+
+label:nth-child(even) input:checked ~ .face {
+  background: var(--green);
+  z-index: 1000;
+  filter: drop-shadow(0 0 50px var(--green)) drop-shadow(0 0 100px var(--green));
+}
+
+label .face::before {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: 45px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #111;
+  opacity: 0.5;
+  box-shadow: 45px 0 0 #111;
+}
+
+label .face::after {
+  content: "";
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 8px;
+  border-radius: 8px;
+  background: #111;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+label input:checked ~ .face::after {
+  width: 40px;
+  height: 20px;
+  border-radius: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transform: translateX(-50%) translateY(10px);
+}
